@@ -1,9 +1,9 @@
 # Dice Generator
 Dice with either 6 or 12 sided dice
 
-V4 Update: login window with pre-set username and password
-
 V5 Update: Dicer UI with all previous functions attached
+
+V4 Update: login window with pre-set username and password
 
 * Username: Test
 * Password: Test
