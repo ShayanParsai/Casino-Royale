@@ -1,7 +1,9 @@
 # Dice Generator
-Dice with either 6 or 12 sides, prints your current date/time at start and end of program 
+Dice with either 6 or 12 sided dice
 
-V4 Update: JFrame login window with pre-set username and password
+V4 Update: login window with pre-set username and password
+
+V5 Update: Dicer UI with all previous functions attached
 
 * Username: Test
 * Password: Test
@@ -11,5 +13,3 @@ V4 Update: JFrame login window with pre-set username and password
 * 2: Rolls 12 side dice and saves the roll to another ArrayList
 
 * 3: Sorts both the lists and prints out both lists in order
-
-* 4: Exit
