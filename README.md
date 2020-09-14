@@ -1,7 +1,7 @@
 # Dice Generator
 Dice with either 6 or 12 sides, prints your current date/time at start and end of program 
 
-V4 Update now lets you login with a JFrame
+V4 Update: JFrame login window with pre-set username and password
 
 * Username: Test
 * Password: Test
