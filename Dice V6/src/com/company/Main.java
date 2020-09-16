@@ -73,7 +73,7 @@ public class Main implements ActionListener {
         String ut = UT.getText();
         String pw = PT.getText();
 
-        if(ut.equals("") && pw.equals("")) {
+        if(ut.equals("test") && pw.equals("test")) {
             S.setText("Login Successful");
             frame.setVisible(false);
 
