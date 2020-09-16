@@ -10,7 +10,6 @@ public class Main implements ActionListener {
 
     ArrayList<String> SaveD6 = new ArrayList<>();
     ArrayList<String> SaveD12 = new ArrayList<>();
-
     private static JTextField UT;
     private static JTextField UT10;
     private static JTextField UT20;
