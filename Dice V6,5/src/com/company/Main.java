@@ -99,7 +99,6 @@ public class Main implements ActionListener {
             button10.addActionListener(e1 -> {
                String y = Double.toString(D6());
                UT10.setText(y);
-
                 SaveD6.add(y);
             });
             //=== Dice 1-6^ ===//
@@ -113,7 +112,6 @@ public class Main implements ActionListener {
             button20.addActionListener(e12 -> {
                 String y10 = Double.toString(D12());
                 UT20.setText(y10);
-
                 SaveD12.add(y10);
             });
             //=== Dice 1-12^ ===//
