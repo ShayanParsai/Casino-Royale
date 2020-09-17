@@ -1,4 +1,4 @@
-# Dice Generator
+# Casino Royale
 
 My first ''bigger'' project with the goal of learning how to create GUI for programs
 
@@ -8,13 +8,15 @@ Add function to create new user/password and store the information either on loc
 
 Add new minigames like roulette/card game
 
+Add the roulette function
+
 # Updates
+
+Casino Royale V1 Update: Added new window to chose between roulette and dice
 
 V6.5 Update: Logout button + minor changes to improve UI
 
 V6 Update: Added functions and slight UI change
-
-V5 Update: Dicer UI 
 
 # Username/Password
 
