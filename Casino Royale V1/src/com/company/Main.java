@@ -205,6 +205,7 @@ public class Main implements ActionListener {
                     frame10.setVisible(false);
                     frame.setVisible(true);
                     S.setText("");
+                    PT.setText("");
                 });
                 //=== Logout^ ===//
 
