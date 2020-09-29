@@ -11,10 +11,10 @@ public class Main {
     private static JLabel loginMessage; /**/ private static JFrame loginFrame;
 
     static double D6() {
-        return (int)(Math.random()*((6-1))+ (double) 1);
+        return (int)(Math.random()*((7-1))+ (double) 1);
     }
     static double D12() {
-        return (int)(Math.random()*((12-1))+ (double) 1);
+        return (int)(Math.random()*((13-1))+ (double) 1);
     }
 
     public static void main(String[] args) {
