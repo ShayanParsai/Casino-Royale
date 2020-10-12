@@ -12,11 +12,11 @@ Add the roulette function
 
 # Updates
 
+Casino Royale v2 Update: Broke down into methods, started work on roulette
+
 Casino Royale V1.5 Update: Readable Variable Names
 
 Casino Royale V1 Update: Added new window to chose between roulette and dice
-
-V6.5 Update: Logout button + minor changes to improve UI
 
 # Username/Password
 
