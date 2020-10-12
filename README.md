@@ -16,6 +16,6 @@ Broke down into methods, started work on roulette
 
 # Username/Password
 
-* Username: test
+* Username: 
 
-* Password: test
+* Password: 
