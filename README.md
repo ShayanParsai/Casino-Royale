@@ -16,6 +16,4 @@ Broke down into methods, started work on roulette
 
 # Username/Password
 
-* Username: 
-
-* Password: 
+System for creating account not yet created, login with both fields blanc
