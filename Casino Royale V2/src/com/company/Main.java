@@ -14,6 +14,7 @@ public class Main {
     private static JTextField diceTwelveResult;
     private static JTextField savedDiceTextField6;
     private static JTextField savedDiceTextField12;
+    private static JTextField rouletteResult;
     private static JPasswordField passwordTextField;
     private static JLabel loginMessage;
     private static JFrame loginFrame;
@@ -104,12 +105,12 @@ public class Main {
         choicePanel.add(diceButton);
         //=== Roulette/Dice Buttons^ ===//
 
-        rouletteButton.addActionListener(e2 -> {
+        rouletteButton.addActionListener(e1 -> {
             choiceFrame.setVisible(false);
             StartRoulette();
         });
 
-        diceButton.addActionListener(e3 -> {
+        diceButton.addActionListener(e2 -> {
             choiceFrame.setVisible(false);
             StartDice();
         });
@@ -118,7 +119,7 @@ public class Main {
     public static void StartDice() {
         JPanel dicePanel = new JPanel();
         JFrame diceFrame = new JFrame("Dice");
-        PanelsAndFrames(dicePanel, diceFrame);
+        PanelsAndFrames.getPanelsAndFrames(dicePanel, diceFrame);
         //=== Dicer Frame+Panel^ ===//
 
         JButton rollDiceSix = new JButton("Roll 1-6");
@@ -127,9 +128,9 @@ public class Main {
         diceSixResult.setBounds(155,30,100,40);
         dicePanel.add(diceSixResult);
         dicePanel.add(rollDiceSix);
-        rollDiceSix.addActionListener(e4 -> {
+        rollDiceSix.addActionListener(e1 -> {
 
-            String x = Double.toString(D6());
+            String x = Integer.toString((int) D6());
             diceSixResult.setText(x);
             DiceSixArrayList.add(x);
         });
@@ -141,9 +142,9 @@ public class Main {
         diceTwelveResult.setBounds(155,100,100,40);
         dicePanel.add(diceTwelveResult);
         dicePanel.add(rollDiceTwelve);
-        rollDiceTwelve.addActionListener(e5 -> {
+        rollDiceTwelve.addActionListener(e2 -> {
 
-            String x = Double.toString(D12());
+            String x = Integer.toString((int) D12());
             diceTwelveResult.setText(x);
             DiceTwelveArrayList.add(x);
         });
@@ -160,7 +161,7 @@ public class Main {
         dicePanel.add(printSavedButton);
         savedDiceTextField6.setText("(D6) :");
         savedDiceTextField12.setText("(D12):");
-        printSavedButton.addActionListener(e6 -> {
+        printSavedButton.addActionListener(e3 -> {
 
             Collections.sort(DiceSixArrayList);
             Collections.sort(DiceTwelveArrayList);
@@ -174,7 +175,7 @@ public class Main {
         JButton deleteRollsButton = new JButton("Delete rolls");
         deleteRollsButton.setBounds(15,285,100,35);
         dicePanel.add(deleteRollsButton);
-        deleteRollsButton.addActionListener(e7 -> {
+        deleteRollsButton.addActionListener(e4 -> {
 
             DiceSixArrayList.clear();
             DiceTwelveArrayList.clear();
@@ -183,22 +184,10 @@ public class Main {
         });
         //=== Delete rolls^ ===//
 
-        JButton casinoRedButton = new JButton("CasinoRed");
-        casinoRedButton.setBounds(185,285,125,35);
-        dicePanel.add(casinoRedButton);
-        casinoRedButton.addActionListener(e8 -> dicePanel.setBackground( new Color(114, 6, 6) ));
-        //=== CasinoRed^ ===//
-
-        JButton smoothBrightButton = new JButton("SmoothBright");
-        smoothBrightButton.setBounds(330,285,125,35);
-        dicePanel.add(smoothBrightButton);
-        smoothBrightButton.addActionListener(e9 -> dicePanel.setBackground(Color.getHSBColor(0,20,202)));
-        //=== SmoothBright^ ===//
-
-        JButton logoutButton = new JButton("Logout");
-        logoutButton.setBounds(340,25,100,35);
-        dicePanel.add(logoutButton);
-        logoutButton.addActionListener(e10 -> {
+        JButton diceLogoutButton = new JButton("Logout");
+        diceLogoutButton.setBounds(340,25,100,35);
+        dicePanel.add(diceLogoutButton);
+        diceLogoutButton.addActionListener(e5 -> {
 
             DiceSixArrayList.clear();
             DiceTwelveArrayList.clear();
@@ -213,39 +202,63 @@ public class Main {
     public static void StartRoulette() {
         JPanel roulettePanel = new JPanel();
         JFrame rouletteFrame = new JFrame("Roulette");
-        PanelsAndFrames(roulettePanel, rouletteFrame);
+        PanelsAndFrames.getPanelsAndFrames(roulettePanel, rouletteFrame);
         //=== Dicer Frame+Panel^ ===//
 
         JButton betOnRed = new JButton("Red");
-        betOnRed.setBounds(15,50,100,40);
+        betOnRed.setBounds(15,30,100,40);
         roulettePanel.add(betOnRed);
-        //=== Red Button^ ===//
+        JTextField betOnRedText = new JTextField(50);
+        betOnRedText.setBounds(120,30,150,40);
+        roulettePanel.add(betOnRedText);
+        betOnRed.addActionListener(e1 -> betOnRedText.setText("Your bet is on Red"));
+        //=== Red Button&Text Field^ ===//
 
         JButton betOnBlack = new JButton("Black");
-        betOnBlack.setBounds(15,110,100,40);
+        betOnBlack.setBounds(15,90,100,40);
         roulettePanel.add(betOnBlack);
-        //=== Black Button^ ===//
+        JTextField betOnBlackText = new JTextField(50);
+        betOnBlackText.setBounds(120,90,150,40);
+        roulettePanel.add(betOnBlackText);
+        betOnBlack.addActionListener(e2 -> betOnBlackText.setText("Your bet is on Black"));
+        //=== Black Button&Text Field^ ===//
 
         JButton betOnGreen = new JButton("Green");
-        betOnGreen.setBounds(15,170,100,40);
+        betOnGreen.setBounds(15,150,100,40);
         roulettePanel.add(betOnGreen);
-        //=== Green Button^ ===//
+        JTextField betOnGreenText = new JTextField(50);
+        betOnGreenText.setBounds(120,150,150,40);
+        roulettePanel.add(betOnGreenText);
+        betOnGreen.addActionListener(e3 -> betOnGreenText.setText("Your bet is on green"));
+        //=== Green Button&Text Field^ ===//
 
-        JTextField rouletteResult = new JTextField(20);
-        rouletteResult.setBounds(200,125,50,50);
+        JButton spinWheel = new JButton("Spin Wheel");
+        spinWheel.setBounds(155,300,200,40);
+        roulettePanel.add(spinWheel);
+        spinWheel.addActionListener(e4 -> {
+            String x = Integer.toString((int) Roulette());
+            rouletteResult.setText(x);
+
+        });
+        //=== spinWheel Button^ ===//
+
+        rouletteResult = new JTextField(20);
+        rouletteResult.setBounds(230,250,50,50);
         roulettePanel.add(rouletteResult);
-
         Font thickFont = new Font("SansSerif", Font.BOLD, 40);
         rouletteResult.setFont(thickFont);
-    }
+        //=== Roulette Result Text Field^ ===//
 
-    private static void PanelsAndFrames(JPanel roulettePanel, JFrame rouletteFrame) {
-        rouletteFrame.setVisible(true);
-        rouletteFrame.setSize(500,400);
-        rouletteFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        rouletteFrame.setLocationRelativeTo(null);
-        rouletteFrame.add(roulettePanel);
-        roulettePanel.setLayout(null);
-        roulettePanel.setBackground(Color.getHSBColor(0,20,202));
+        JButton rouletteLogoutButton = new JButton("Logout");
+        rouletteLogoutButton.setBounds(350,30,100,35);
+        roulettePanel.add(rouletteLogoutButton);
+        rouletteLogoutButton.addActionListener(e5 -> {
+
+            rouletteFrame.setVisible(false);
+            loginFrame.setVisible(true);
+            loginMessage.setText("");
+            passwordTextField.setText("");
+        });
+        //=== Logout^ ===//
     }
 }
