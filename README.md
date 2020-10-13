@@ -6,8 +6,6 @@ My first ''bigger'' project with the goal of learning how to create GUI for prog
 
 Add function to create new user/password and store the information either on local or online
 
-Add new minigames like roulette/card game
-
 Add the roulette function
 
 # Recent Update
