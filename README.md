@@ -8,10 +8,6 @@ Add function to create new user/password and store the information either on loc
 
 Add the roulette function
 
-# Recent Update
-
-Broke down into methods, started work on roulette
-
 # Username/Password
 
 System for creating account not yet created, login with both fields blanc
