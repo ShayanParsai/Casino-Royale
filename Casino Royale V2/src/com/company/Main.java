@@ -14,10 +14,23 @@ public class Main {
     private static JTextField diceTwelveResult;
     private static JTextField savedDiceTextField6;
     private static JTextField savedDiceTextField12;
-    private static JTextField rouletteResult;
+    private static JTextField rouletteResultText;
+    public static JTextField betOnRedText;
+    public static JTextField betOnBlackText;
+    public static JTextField betOnGreenText;
+    public static JTextField betOnOddsText;
+    public static JTextField betOnEvensText;
+    public static JTextField betOnTopHalfText;
+    public static JTextField betOnBottomHalfText;
+    public static JTextField betOn1stText;
+    public static JTextField betOn2ndText;
+    public static JTextField betOn3rdText;
     private static JPasswordField passwordTextField;
     private static JLabel loginMessage;
     private static JFrame loginFrame;
+    public static int userCredits = 500;
+    public static int userTempValue = 0;
+    public static int userBet = 10;
 
     static double D6() {
         return (int)(Math.random()*((7-1))+ (double) 1);
@@ -25,10 +38,10 @@ public class Main {
     static double D12() {
         return (int)(Math.random()*((13-1))+ (double) 1);
     }
-    static double Roulette() {
+    static double roulette() {
         return (int)(Math.random()*((38-1))+ (double) 1);
-    }
 
+    }
     public static void main(String[] args) {
         StartLoginFrame();
     }
@@ -112,11 +125,11 @@ public class Main {
 
         diceButton.addActionListener(e2 -> {
             choiceFrame.setVisible(false);
-            StartDice();
+            startDice();
         });
     }
 
-    public static void StartDice() {
+    public static void startDice() {
         JPanel dicePanel = new JPanel();
         JFrame diceFrame = new JFrame("Dice");
         PanelsAndFrames.getPanelsAndFrames(dicePanel, diceFrame);
@@ -185,7 +198,7 @@ public class Main {
         //=== Delete rolls^ ===//
 
         JButton diceLogoutButton = new JButton("Logout");
-        diceLogoutButton.setBounds(340,25,100,35);
+        diceLogoutButton.setBounds(400,465,100,35);
         dicePanel.add(diceLogoutButton);
         diceLogoutButton.addActionListener(e5 -> {
 
@@ -203,62 +216,176 @@ public class Main {
         JPanel roulettePanel = new JPanel();
         JFrame rouletteFrame = new JFrame("Roulette");
         PanelsAndFrames.getPanelsAndFrames(roulettePanel, rouletteFrame);
-        //=== Dicer Frame+Panel^ ===//
+        //=== Roulette Frame+Panel^ ===//
 
-        JButton betOnRed = new JButton("Red");
-        betOnRed.setBounds(15,30,100,40);
-        roulettePanel.add(betOnRed);
-        JTextField betOnRedText = new JTextField(50);
-        betOnRedText.setBounds(120,30,150,40);
+        JButton betOnRedButton = new JButton("Red");
+        betOnRedButton.setBounds(15,30,100,40);
+        roulettePanel.add(betOnRedButton);
+        betOnRedText = new JTextField(50);
+        betOnRedText.setBounds(120,30,120,40);
         roulettePanel.add(betOnRedText);
-        betOnRed.addActionListener(e1 -> betOnRedText.setText("Your bet is on Red"));
+        betOnRedButton.addActionListener(e1 -> {
+            RouletteBets.BetOnRed = true;
+            betOnRedText.setText("Your bet is on Red");
+        });
         //=== Red Button&Text Field^ ===//
 
-        JButton betOnBlack = new JButton("Black");
-        betOnBlack.setBounds(15,90,100,40);
-        roulettePanel.add(betOnBlack);
-        JTextField betOnBlackText = new JTextField(50);
-        betOnBlackText.setBounds(120,90,150,40);
+        JButton betOnBlackButton = new JButton("Black");
+        betOnBlackButton.setBounds(15,90,100,40);
+        roulettePanel.add(betOnBlackButton);
+        betOnBlackText = new JTextField(50);
+        betOnBlackText.setBounds(120,90,120,40);
         roulettePanel.add(betOnBlackText);
-        betOnBlack.addActionListener(e2 -> betOnBlackText.setText("Your bet is on Black"));
+        betOnBlackButton.addActionListener(e2 -> {
+            RouletteBets.BetOnBlack = true;
+            betOnBlackText.setText("Your bet is on Black");
+        });
         //=== Black Button&Text Field^ ===//
 
-        JButton betOnGreen = new JButton("Green");
-        betOnGreen.setBounds(15,150,100,40);
-        roulettePanel.add(betOnGreen);
-        JTextField betOnGreenText = new JTextField(50);
-        betOnGreenText.setBounds(120,150,150,40);
+        JButton betOnGreenButton = new JButton("Green");
+        betOnGreenButton.setBounds(15,150,100,40);
+        roulettePanel.add(betOnGreenButton);
+        betOnGreenText = new JTextField(50);
+        betOnGreenText.setBounds(120,150,120,40);
         roulettePanel.add(betOnGreenText);
-        betOnGreen.addActionListener(e3 -> betOnGreenText.setText("Your bet is on green"));
+        betOnGreenButton.addActionListener(e3 -> {
+            RouletteBets.BetOnGreen = true;
+            betOnGreenText.setText("Your bet is on green");
+        });
+
         //=== Green Button&Text Field^ ===//
 
-        JButton spinWheel = new JButton("Spin Wheel");
-        spinWheel.setBounds(155,300,200,40);
-        roulettePanel.add(spinWheel);
-        spinWheel.addActionListener(e4 -> {
-            String x = Integer.toString((int) Roulette());
-            rouletteResult.setText(x);
-
+        JButton betOnOddsButton = new JButton("Odds");
+        betOnOddsButton.setBounds(15,210,100,40);
+        roulettePanel.add(betOnOddsButton);
+        betOnOddsText = new JTextField(50);
+        betOnOddsText.setBounds(120,210,120,40);
+        roulettePanel.add(betOnOddsText);
+        betOnOddsButton.addActionListener(e4 -> {
+            RouletteBets.BetOnOdds = true;
+            betOnOddsText.setText("Your bet is on Odds");
         });
+
+        //=== Odds Button&Text Field^ ===//
+
+        JButton betOnEvensButton = new JButton("Evens");
+        betOnEvensButton.setBounds(15,270,100,40);
+        roulettePanel.add(betOnEvensButton);
+        betOnEvensText = new JTextField(50);
+        betOnEvensText.setBounds(120,270,120,40);
+        roulettePanel.add(betOnEvensText);
+        betOnEvensButton.addActionListener(e5 -> {
+            RouletteBets.BetOnEvens = true;
+            betOnEvensText.setText("Your bet is on Evens");
+        });
+
+        //=== Evens Button&Text Field^ ===//
+
+        JButton betOnTopHalfButton = new JButton("Top half");
+        betOnTopHalfButton.setBounds(375,30,100,40);
+        roulettePanel.add(betOnTopHalfButton);
+        betOnTopHalfText = new JTextField(50);
+        betOnTopHalfText.setBounds(247,30,123,40);
+        roulettePanel.add(betOnTopHalfText);
+        betOnTopHalfButton.addActionListener(e6 -> {
+            RouletteBets.BetOnTopHalf = true;
+            betOnTopHalfText.setText("Your bet is on top half");
+        });
+        //=== Top½ Button&Text Field^ ===//
+
+        JButton betOnBottomHalfButton = new JButton("Bottom half");
+        betOnBottomHalfButton.setBounds(375,90,100,40);
+        roulettePanel.add(betOnBottomHalfButton);
+        betOnBottomHalfText = new JTextField(50);
+        betOnBottomHalfText.setBounds(247,90,123,40);
+        roulettePanel.add(betOnBottomHalfText);
+        betOnBottomHalfButton.addActionListener(e7 -> {
+            RouletteBets.BetOnBottomHalf = true;
+            betOnBottomHalfText.setText("Your bet is on bot half");
+        });
+        //=== Bottom½ Button&Text Field^ ===//
+
+        JButton betOn1stButton = new JButton("1st");
+        betOn1stButton.setBounds(375,150,100,40);
+        roulettePanel.add(betOn1stButton);
+        betOn1stText = new JTextField(50);
+        betOn1stText.setBounds(247,150,123,40);
+        roulettePanel.add(betOn1stText);
+        betOn1stButton.addActionListener(e8 -> {
+            RouletteBets.BetOn1st = true;
+            betOn1stText.setText("Your bet is on 1st 12");
+        });
+        //=== 1st Button&Text Field^ ===//
+
+        JButton betOn2ndButton = new JButton("2nd");
+        betOn2ndButton.setBounds(375,210,100,40);
+        roulettePanel.add(betOn2ndButton);
+        betOn2ndText = new JTextField(50);
+        betOn2ndText.setBounds(247,210,123,40);
+        roulettePanel.add(betOn2ndText);
+        betOn2ndButton.addActionListener(e9 -> {
+            RouletteBets.BetOn2nd = true;
+            betOn2ndText.setText("Your bet is on 2nd 12");
+        });
+        //=== 2nd Button&Text Field^ ===//
+
+        JButton betOn3rdButton = new JButton("3rd");
+        betOn3rdButton.setBounds(375,270,100,40);
+        roulettePanel.add(betOn3rdButton);
+        betOn3rdText = new JTextField(50);
+        betOn3rdText.setBounds(247,270,123,40);
+        roulettePanel.add(betOn3rdText);
+        betOn3rdButton.addActionListener(e10 -> {
+            RouletteBets.BetOn3rd = true;
+            betOn3rdText.setText("Your bet is on 3rd 12");
+        });
+        //=== 3rd Button&Text Field^ ===//
+
+        //========================================================================//
+        JButton spinWheelButton = new JButton("Spin Wheel");
+        spinWheelButton.setBounds(15,330,460,40);
+        roulettePanel.add(spinWheelButton);
+        spinWheelButton.addActionListener(e11 -> calculateRouletteResults());
         //=== spinWheel Button^ ===//
 
-        rouletteResult = new JTextField(20);
-        rouletteResult.setBounds(230,250,50,50);
-        roulettePanel.add(rouletteResult);
+        rouletteResultText = new JTextField(20);
+        rouletteResultText.setBounds(220,390,50,50);
+        roulettePanel.add(rouletteResultText);
         Font thickFont = new Font("SansSerif", Font.BOLD, 40);
-        rouletteResult.setFont(thickFont);
+        rouletteResultText.setFont(thickFont);
         //=== Roulette Result Text Field^ ===//
 
         JButton rouletteLogoutButton = new JButton("Logout");
-        rouletteLogoutButton.setBounds(350,30,100,35);
+        rouletteLogoutButton.setBounds(400,465,100,35);
         roulettePanel.add(rouletteLogoutButton);
-        rouletteLogoutButton.addActionListener(e5 -> {
-
+        rouletteLogoutButton.addActionListener(e12 -> {
             rouletteFrame.setVisible(false);
             loginFrame.setVisible(true);
             loginMessage.setText("");
             passwordTextField.setText("");
         });
         //=== Logout^ ===//
+    }
+
+    public static void calculateRouletteResults() {
+        if (userCredits > 9) {
+            System.out.println("\n=== New Roll ===");
+            System.out.println("your current total credit is: " + userCredits);
+            int rouletteRollResult = (int) roulette();
+            String x = Integer.toString(rouletteRollResult);
+            rouletteResultText.setText(x);
+            userCredits -= userBet;
+            userTempValue = DidRouletteWin.checkWin(userBet,rouletteRollResult);
+            userCredits += userTempValue;
+            if (userTempValue > userBet) {
+                System.out.println("You won " + userTempValue + " your total is now : " + userCredits);
+            } else {
+                System.out.println("You lost " + userBet + " your total is now : " + userCredits);
+            }
+            userTempValue = 0;
+        } else {
+            System.out.println("You have insufficent funds, please refill your credits");
+        }
+        RouletteBets.setAllBetsToFalse();
     }
 }
