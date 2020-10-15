@@ -14,56 +14,56 @@ public class DidRouletteWin extends Main {
         int tempCredit = userCredit;
         int tempTotal = 0;
 
-        if (rouletteRollResult == (37) && RouletteBets.BetOnGreen) {
+        if (rouletteRollResult == (0) && RouletteBets.BetOnGreen) {
             tempCredit *= 35;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 35;
         }
-        if (rouletteRollResult <19 && RouletteBets.BetOnTopHalf) {
+        if (rouletteRollResult <19 && RouletteBets.BetOnBottomHalf) {
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 2;
         }
-        if (rouletteRollResult >18 && RouletteBets.BetOnBottomHalf) {
+        if (rouletteRollResult >18 && RouletteBets.BetOnTopHalf) {
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 2;
         }
-        if (rouletteRollResult <12 && RouletteBets.BetOn1st) {
+        if (rouletteRollResult <13 && RouletteBets.BetOn1st) {
             tempCredit *= 3;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 3;
         }
-        if (rouletteRollResult >12 && roulette() <26 && RouletteBets.BetOn2nd) {
+        if (rouletteRollResult >12 && rouletteRollResult <25 && RouletteBets.BetOn2nd) {
             tempCredit *= 3;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 3;
         }
-        if (rouletteRollResult <24 && RouletteBets.BetOn3rd) {
+        if (rouletteRollResult > 24 && RouletteBets.BetOn3rd) {
             tempCredit *= 3;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 3;
         }
         if (redNumbers.contains(rouletteRollResult) && RouletteBets.BetOnRed) {
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 2;
         }
         if (blackNumbers.contains(rouletteRollResult) && RouletteBets.BetOnBlack) {
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 2;
         }
         if((rouletteRollResult%2)==0 && RouletteBets.BetOnEvens) {
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
             tempCredit /= 2;
         }
         if ((rouletteRollResult%2)!=0 && RouletteBets.BetOnOdds){
             tempCredit *= 2;
-            tempTotal =+ tempCredit;
+            tempTotal += tempCredit;
         }
-        userCredit = tempTotal;
+        userCredit =+ tempTotal;
         return userCredit;
     }
 }

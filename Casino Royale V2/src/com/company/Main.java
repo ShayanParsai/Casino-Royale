@@ -25,6 +25,8 @@ public class Main {
     public static JTextField betOn1stText;
     public static JTextField betOn2ndText;
     public static JTextField betOn3rdText;
+    public static JTextField gameLogText;
+    public static JTextField currentWagerText;
     private static JPasswordField passwordTextField;
     private static JLabel loginMessage;
     private static JFrame loginFrame;
@@ -33,14 +35,13 @@ public class Main {
     public static int userBet = 10;
 
     static double D6() {
-        return (int)(Math.random()*((7-1))+ (double) 1);
+        return (int)(Math.random()*((6))+ (double) 1);
     }
     static double D12() {
-        return (int)(Math.random()*((13-1))+ (double) 1);
+        return (int)(Math.random()*((12))+ (double) 1);
     }
     static double roulette() {
-        return (int)(Math.random()*((38-1))+ (double) 1);
-
+        return (int)(Math.random()*((36)));
     }
     public static void main(String[] args) {
         StartLoginFrame();
@@ -341,7 +342,6 @@ public class Main {
         });
         //=== 3rd Button&Text Field^ ===//
 
-        //========================================================================//
         JButton spinWheelButton = new JButton("Spin Wheel");
         spinWheelButton.setBounds(15,330,460,40);
         roulettePanel.add(spinWheelButton);
@@ -349,16 +349,48 @@ public class Main {
         //=== spinWheel Button^ ===//
 
         rouletteResultText = new JTextField(20);
-        rouletteResultText.setBounds(220,390,50,50);
+        rouletteResultText.setBounds(425,380,50,50);
         roulettePanel.add(rouletteResultText);
         Font thickFont = new Font("SansSerif", Font.BOLD, 40);
         rouletteResultText.setFont(thickFont);
         //=== Roulette Result Text Field^ ===//
 
+        gameLogText = new JTextField(50);
+        gameLogText.setBounds(15,380,400,50);
+        roulettePanel.add(gameLogText);
+        Font mediumThickFont = new Font("SansSerif", Font.BOLD, 18);
+        gameLogText.setFont(mediumThickFont);
+        //=== GameLog Text Field^ ===//
+
+        currentWagerText = new JTextField(20);
+        currentWagerText.setBounds(335,465,50,40);
+        roulettePanel.add(currentWagerText);
+        currentWagerText.setFont(mediumThickFont);
+        //=== CurrentWager TextField^ ===///
+
+        JButton reduceWageButton = new JButton("Reduce Wage by 10");
+        JButton raiseWageButton = new JButton("Raise Wage by 10");
+        reduceWageButton.setBounds(15,465,150,40);
+        raiseWageButton.setBounds(175,465,150,40);
+        roulettePanel.add(reduceWageButton);
+        roulettePanel.add(raiseWageButton);
+        currentWagerText.setText(String.valueOf(userBet));
+        reduceWageButton.addActionListener(e13 -> {
+            if (userBet > 9) {
+                userBet -= 10;
+                currentWagerText.setText(String.valueOf(userBet));
+            }
+        });
+        raiseWageButton.addActionListener(e13 -> {
+            userBet += 10;
+            currentWagerText.setText(String.valueOf(userBet));
+        });
+        //=== Raise/LowerWager Button^ ===//
+
         JButton rouletteLogoutButton = new JButton("Logout");
         rouletteLogoutButton.setBounds(400,465,100,35);
         roulettePanel.add(rouletteLogoutButton);
-        rouletteLogoutButton.addActionListener(e12 -> {
+        rouletteLogoutButton.addActionListener(e14 -> {
             rouletteFrame.setVisible(false);
             loginFrame.setVisible(true);
             loginMessage.setText("");
@@ -368,9 +400,7 @@ public class Main {
     }
 
     public static void calculateRouletteResults() {
-        if (userCredits > 9) {
-            System.out.println("\n=== New Roll ===");
-            System.out.println("your current total credit is: " + userCredits);
+        if (userCredits >= userBet) {
             int rouletteRollResult = (int) roulette();
             String x = Integer.toString(rouletteRollResult);
             rouletteResultText.setText(x);
@@ -378,13 +408,13 @@ public class Main {
             userTempValue = DidRouletteWin.checkWin(userBet,rouletteRollResult);
             userCredits += userTempValue;
             if (userTempValue > userBet) {
-                System.out.println("You won " + userTempValue + " your total is now : " + userCredits);
+                gameLogText.setText("You won " + userTempValue + " credits, your new total is: " + userCredits);
             } else {
-                System.out.println("You lost " + userBet + " your total is now : " + userCredits);
+                gameLogText.setText("You lost " + userBet + " credits, your total is now : " + userCredits);
             }
             userTempValue = 0;
         } else {
-            System.out.println("You have insufficent funds, please refill your credits");
+            gameLogText.setText("Insufficent funds, please refill your credits");
         }
         RouletteBets.setAllBetsToFalse();
     }
