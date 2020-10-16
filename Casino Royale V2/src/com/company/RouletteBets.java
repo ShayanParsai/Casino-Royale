@@ -25,6 +25,7 @@ public class RouletteBets extends Main{
         BetOn3rd = false;
         resetAllTextFields();
     }
+
     public static void resetAllTextFields() {
         betOnRedText.setText("");
         betOnBlackText.setText("");

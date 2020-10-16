@@ -9,7 +9,6 @@ public class Main {
 
     public static ArrayList<String> DiceSixArrayList = new ArrayList<>();
     public static ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
-    private static JTextField usernameTextField;
     private static JTextField diceSixResult;
     private static JTextField diceTwelveResult;
     private static JTextField savedDiceTextField6;
@@ -32,7 +31,7 @@ public class Main {
     private static JFrame loginFrame;
     public static int userCredits = 500;
     public static int userTempValue = 0;
-    public static int userBet = 10;
+    public static int userBet = 0;
 
     static double D6() {
         return (int)(Math.random()*((6))+ (double) 1);
@@ -57,7 +56,7 @@ public class Main {
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds (10,20,80,25);
         loginPanel.add(usernameLabel);
-        usernameTextField = new JTextField(20);
+        JTextField usernameTextField = new JTextField(20);
         usernameTextField.setBounds(100,20,165,25);
         loginPanel.add(usernameTextField);
         //=== Username^ ===//
@@ -347,6 +346,7 @@ public class Main {
         roulettePanel.add(rouletteResultText);
         Font thickFont = new Font("SansSerif", Font.BOLD, 40);
         rouletteResultText.setFont(thickFont);
+        rouletteResultText.setEditable(false);
         //=== Roulette Result Text Field^ ===//
 
         gameLogText = new JTextField(50);
@@ -354,12 +354,15 @@ public class Main {
         roulettePanel.add(gameLogText);
         Font mediumThickFont = new Font("SansSerif", Font.BOLD, 18);
         gameLogText.setFont(mediumThickFont);
+        gameLogText.setEditable(false);
+        gameLogText.setText("You have " + userCredits + " credits");
         //=== GameLog Text Field^ ===//
 
         currentWagerText = new JTextField(20);
         currentWagerText.setBounds(335,465,50,40);
         roulettePanel.add(currentWagerText);
         currentWagerText.setFont(mediumThickFont);
+        currentWagerText.setEditable(false);
         //=== CurrentWager TextField^ ===///
 
         JButton reduceWageButton = new JButton("Reduce Wage by 10");
