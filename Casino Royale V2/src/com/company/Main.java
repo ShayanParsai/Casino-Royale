@@ -51,12 +51,7 @@ public class Main {
 
         JPanel loginPanel = new JPanel();
         loginFrame = new JFrame("Dice Generator Login");
-        loginFrame.setSize(400,200);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setLocationRelativeTo(null);
-        loginFrame.add(loginPanel);
-        loginPanel.setLayout(null);
-        loginPanel.setBackground(Color.getHSBColor(0,20,202));
+        PanelsAndFrames.getSmallPanelsAndFrames(loginPanel, loginFrame);
         //=== Login Frame/Panel^ ===//
 
         JLabel usernameLabel = new JLabel("Username:");
@@ -75,16 +70,20 @@ public class Main {
         loginPanel.add(passwordTextField);
         //=== Password^ ===//
 
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(10,80,80,25);
-        loginPanel.add(loginButton);
-        //=== Button^ ===//
-
         loginMessage = new JLabel("");
         loginMessage.setBounds(100,80,300,25);
         loginPanel.add(loginMessage);
-        loginFrame.setVisible(true);
         //=== Login Message^ ===//
+
+        JButton createAccount = new JButton("Create Account");
+        createAccount.setBounds(170,95,150,25);
+        loginPanel.add(createAccount);
+        //=== CreateAccount Button^ ===//
+
+        JButton loginButton = new JButton("Login");
+        loginButton.setBounds(10,95,80,25);
+        loginPanel.add(loginButton);
+        //=== LoginButton^ ===//
 
         loginButton.addActionListener(e1 -> {
             String userName = usernameTextField.getText();
@@ -102,13 +101,7 @@ public class Main {
     public static void StartLobby() {
         JPanel choicePanel = new JPanel();
         JFrame choiceFrame = new JFrame("Casino Royale");
-        choiceFrame.setVisible(true);
-        choiceFrame.setSize(350,175);
-        choiceFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        choiceFrame.setLocationRelativeTo(null);
-        choiceFrame.add(choicePanel);
-        choicePanel.setLayout(null);
-        choicePanel.setBackground(Color.getHSBColor(0,20,202));
+        PanelsAndFrames.getSmallPanelsAndFrames(choicePanel, choiceFrame);
         //=== Choice Frame+Panel^ ===//
 
         JButton rouletteButton = new JButton("Roulette");
@@ -133,7 +126,7 @@ public class Main {
     public static void startDice() {
         JPanel dicePanel = new JPanel();
         JFrame diceFrame = new JFrame("Dice");
-        PanelsAndFrames.getPanelsAndFrames(dicePanel, diceFrame);
+        PanelsAndFrames.getMediumPanelsAndFrames(dicePanel, diceFrame);
         //=== Dicer Frame+Panel^ ===//
 
         JButton rollDiceSix = new JButton("Roll 1-6");
@@ -216,8 +209,14 @@ public class Main {
     public static void StartRoulette() {
         JPanel roulettePanel = new JPanel();
         JFrame rouletteFrame = new JFrame("Roulette");
-        PanelsAndFrames.getPanelsAndFrames(roulettePanel, rouletteFrame);
+        PanelsAndFrames.getMediumPanelsAndFrames(roulettePanel, rouletteFrame);
         //=== Roulette Frame+Panel^ ===//
+
+        JButton resetAllBetsButton = new JButton("Reset all bets");
+        resetAllBetsButton.setBounds(190,0,125,25);
+        roulettePanel.add(resetAllBetsButton);
+        resetAllBetsButton.addActionListener(e0 -> RouletteBets.setAllBetsToFalse());
+        //=== Reset All Bets Button^ ===//
 
         JButton betOnRedButton = new JButton("Red");
         betOnRedButton.setBounds(15,30,100,40);
@@ -404,6 +403,13 @@ public class Main {
             int rouletteRollResult = (int) roulette();
             String x = Integer.toString(rouletteRollResult);
             rouletteResultText.setText(x);
+            if (rouletteRollResult == 0) {
+                rouletteResultText.setBackground(Color.green);
+            } else if (DidRouletteWin.blackNumbers.contains(rouletteRollResult)) {
+                rouletteResultText.setBackground(Color.gray);
+            } else {
+                rouletteResultText.setBackground(Color.red);
+            }
             userCredits -= userBet;
             userTempValue = DidRouletteWin.checkWin(userBet,rouletteRollResult);
             userCredits += userTempValue;
@@ -413,8 +419,10 @@ public class Main {
                 gameLogText.setText("You lost " + userBet + " credits, your total is now : " + userCredits);
             }
             userTempValue = 0;
+        } else if (userCredits > 0) {
+            gameLogText.setText("Insufficent funds, please lower wager");
         } else {
-            gameLogText.setText("Insufficent funds, please refill your credits");
+            gameLogText.setText("Insufficent funds, please refill balance");
         }
         RouletteBets.setAllBetsToFalse();
     }
