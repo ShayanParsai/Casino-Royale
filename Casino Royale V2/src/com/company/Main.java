@@ -75,13 +75,8 @@ public class Main {
         loginPanel.add(loginMessage);
         //=== Login Message^ ===//
 
-        JButton createAccount = new JButton("Create Account");
-        createAccount.setBounds(170,95,150,25);
-        loginPanel.add(createAccount);
-        //=== CreateAccount Button^ ===//
-
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(10,95,80,25);
+        loginButton.setBounds(10,90,80,25);
         loginPanel.add(loginButton);
         //=== LoginButton^ ===//
 
