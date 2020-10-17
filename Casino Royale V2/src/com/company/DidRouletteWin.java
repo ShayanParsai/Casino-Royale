@@ -3,14 +3,14 @@ package com.company;
 import java.util.Arrays;
 import java.util.List;
 
-public class DidRouletteWin extends Main {
+public class DidRouletteWin {
 
-    private static final Integer[] red = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
-    private static final List<Integer> redNumbers = Arrays.asList(red);
-    private static final Integer[] black = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
-    public static final List<Integer> blackNumbers = Arrays.asList(black);
+    private final Integer[] red = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
+    private final List<Integer> redNumbers = Arrays.asList(red);
+    private final Integer[] black = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
+    public final List<Integer> blackNumbers = Arrays.asList(black);
 
-    public static int checkWin(int userCredit, int rouletteRollResult) {
+    public int checkWin(int userCredit, int rouletteRollResult) {
         int tempCredit = userCredit;
         int tempTotal = 0;
         MyMultiplyer multiplyByTwoFunction = (a) -> a*2;

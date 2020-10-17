@@ -1,6 +1,7 @@
 package com.company;
 
-public class RouletteBets extends Main{
+public class RouletteBets extends Main {
+
     static boolean BetOnGreen = false;
     static boolean BetOnBlack = false;
     static boolean BetOnRed = false;
@@ -12,7 +13,7 @@ public class RouletteBets extends Main{
     static boolean BetOn2nd = false;
     static boolean BetOn3rd = false;
 
-    public static void setAllBetsToFalse() {
+    public void setAllBetsToFalse() {
         BetOnGreen = false;
         BetOnBlack = false;
         BetOnRed = false;
@@ -26,7 +27,7 @@ public class RouletteBets extends Main{
         resetAllTextFields();
     }
 
-    public static void resetAllTextFields() {
+    public void resetAllTextFields(){
         betOnRedText.setText("");
         betOnBlackText.setText("");
         betOnGreenText.setText("");

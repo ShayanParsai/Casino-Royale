@@ -7,13 +7,13 @@ import java.util.Collections;
 
 public class Main {
 
-    public static ArrayList<String> DiceSixArrayList = new ArrayList<>();
-    public static ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
-    private static JTextField diceSixResult;
-    private static JTextField diceTwelveResult;
-    private static JTextField savedDiceTextField6;
-    private static JTextField savedDiceTextField12;
-    private static JTextField rouletteResultText;
+    public  ArrayList<String> DiceSixArrayList = new ArrayList<>();
+    public  ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
+    private JTextField diceSixResult;
+    private JTextField diceTwelveResult;
+    private JTextField savedDiceTextField6;
+    private JTextField savedDiceTextField12;
+    private JTextField rouletteResultText;
     public static JTextField betOnRedText;
     public static JTextField betOnBlackText;
     public static JTextField betOnGreenText;
@@ -24,33 +24,35 @@ public class Main {
     public static JTextField betOn1stText;
     public static JTextField betOn2ndText;
     public static JTextField betOn3rdText;
-    public static JTextField gameLogText;
-    public static JTextField currentWagerText;
-    private static JPasswordField passwordTextField;
-    private static JLabel loginMessage;
-    private static JFrame loginFrame;
+    public JTextField gameLogText;
+    public JTextField currentWagerText;
+    private JPasswordField passwordTextField;
+    private JLabel loginMessage;
+    private JFrame loginFrame;
     public static int userCredits = 500;
     public static int userTempValue = 0;
     public static int userBet = 0;
 
-    static double D6() {
+    double D6() {
         return (int)(Math.random()*((6))+ (double) 1);
     }
-    static double D12() {
+    double D12() {
         return (int)(Math.random()*((12))+ (double) 1);
     }
-    static double roulette() {
+    double roulette() {
         return (int)(Math.random()*((36)));
     }
+
     public static void main(String[] args) {
-        StartLoginFrame();
+        Main program = new Main();
+        program.StartLoginFrame();
     }
 
-    public static void StartLoginFrame() {
-
+    public void StartLoginFrame() {
+        PanelsAndFrames getFrame = new PanelsAndFrames();
         JPanel loginPanel = new JPanel();
         loginFrame = new JFrame("Dice Generator Login");
-        PanelsAndFrames.getSmallPanelsAndFrames(loginPanel, loginFrame);
+        getFrame.getSmallPanelsAndFrames(loginPanel, loginFrame);
         //=== Login Frame/Panel^ ===//
 
         JLabel usernameLabel = new JLabel("Username:");
@@ -92,10 +94,11 @@ public class Main {
         });
     }
 
-    public static void StartLobby() {
+    public void StartLobby() {
+        PanelsAndFrames getFrame = new PanelsAndFrames();
         JPanel choicePanel = new JPanel();
         JFrame choiceFrame = new JFrame("Casino Royale");
-        PanelsAndFrames.getSmallPanelsAndFrames(choicePanel, choiceFrame);
+        getFrame.getSmallPanelsAndFrames(choicePanel, choiceFrame);
         //=== Choice Frame+Panel^ ===//
 
         JButton rouletteButton = new JButton("Roulette");
@@ -117,10 +120,11 @@ public class Main {
         });
     }
 
-    public static void startDice() {
+    public void startDice() {
+        PanelsAndFrames getFrames = new PanelsAndFrames();
         JPanel dicePanel = new JPanel();
         JFrame diceFrame = new JFrame("Dice");
-        PanelsAndFrames.getMediumPanelsAndFrames(dicePanel, diceFrame);
+        getFrames.getMediumPanelsAndFrames(dicePanel, diceFrame);
         //=== Dicer Frame+Panel^ ===//
 
         JButton rollDiceSix = new JButton("Roll 1-6");
@@ -200,16 +204,18 @@ public class Main {
         //=== Logout^ ===//
     }
 
-    public static void StartRoulette() {
+    public void StartRoulette() {
+        RouletteBets allBets = new RouletteBets();
+        PanelsAndFrames getFrames = new PanelsAndFrames();
         JPanel roulettePanel = new JPanel();
         JFrame rouletteFrame = new JFrame("Roulette");
-        PanelsAndFrames.getMediumPanelsAndFrames(roulettePanel, rouletteFrame);
+        getFrames.getMediumPanelsAndFrames(roulettePanel, rouletteFrame);
         //=== Roulette Frame+Panel^ ===//
 
         JButton resetAllBetsButton = new JButton("Reset all bets");
         resetAllBetsButton.setBounds(190,0,125,25);
         roulettePanel.add(resetAllBetsButton);
-        resetAllBetsButton.addActionListener(e0 -> RouletteBets.setAllBetsToFalse());
+        resetAllBetsButton.addActionListener(e0 -> allBets.setAllBetsToFalse());
         //=== Reset All Bets Button^ ===//
 
         JButton betOnRedButton = new JButton("Red");
@@ -396,20 +402,22 @@ public class Main {
         //=== Logout^ ===//
     }
 
-    public static void calculateRouletteResults() {
+    public void calculateRouletteResults() {
+        RouletteBets allBets = new RouletteBets();
+        DidRouletteWin checkIfWin = new DidRouletteWin();
         if (userCredits >= userBet) {
             int rouletteRollResult = (int) roulette();
             String x = Integer.toString(rouletteRollResult);
             rouletteResultText.setText(x);
             if (rouletteRollResult == 0) {
                 rouletteResultText.setBackground(Color.green);
-            } else if (DidRouletteWin.blackNumbers.contains(rouletteRollResult)) {
+            } else if (checkIfWin.blackNumbers.contains(rouletteRollResult)) {
                 rouletteResultText.setBackground(Color.gray);
             } else {
                 rouletteResultText.setBackground(Color.red);
             }
             userCredits -= userBet;
-            userTempValue = DidRouletteWin.checkWin(userBet,rouletteRollResult);
+            userTempValue = checkIfWin.checkWin(userBet,rouletteRollResult);
             userCredits += userTempValue;
             if (userTempValue > userBet) {
                 gameLogText.setText("You won " + userTempValue + " credits, your new total is: " + userCredits);
@@ -422,6 +430,6 @@ public class Main {
         } else {
             gameLogText.setText("Insufficent funds, please refill balance");
         }
-        RouletteBets.setAllBetsToFalse();
+        allBets.setAllBetsToFalse();
     }
 }
