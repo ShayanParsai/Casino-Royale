@@ -7,8 +7,8 @@ import java.util.Collections;
 
 public class Main {
 
-    public  ArrayList<String> DiceSixArrayList = new ArrayList<>();
-    public  ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
+    public ArrayList<String> DiceSixArrayList = new ArrayList<>();
+    public ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
     private JTextField diceSixResult;
     private JTextField diceTwelveResult;
     private JTextField savedDiceTextField6;
