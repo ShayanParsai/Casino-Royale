@@ -12,4 +12,4 @@ Simplify the code further
 
 # Username/Password
 
-System for creating account not yet created, login with both fields blanc
+System for creating account not yet created
