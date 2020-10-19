@@ -206,7 +206,6 @@ public class Main {
             RouletteBets.BetOnGreen = true;
             betOnGreenText.setText("Your bet is on green");
         });
-
         //=== Green Button&Text Field^ ===//
 
         JButton betOnOddsButton = new JButton("Odds");
@@ -219,7 +218,6 @@ public class Main {
             RouletteBets.BetOnOdds = true;
             betOnOddsText.setText("Your bet is on Odds");
         });
-
         //=== Odds Button&Text Field^ ===//
 
         JButton betOnEvensButton = new JButton("Evens");
@@ -232,7 +230,6 @@ public class Main {
             RouletteBets.BetOnEvens = true;
             betOnEvensText.setText("Your bet is on Evens");
         });
-
         //=== Evens Button&Text Field^ ===//
 
         JButton betOnTopHalfButton = new JButton("Top half");
@@ -356,6 +353,9 @@ public class Main {
             } else {
                 rouletteResultText.setBackground(Color.red);
             }
+            //to do: For each betOn that is true, do : userCredits -= userBet;
+            // foreach ( betOnList item true ) {
+            // userCredits -= userBet; }
             userCredits -= userBet;
             int userTempValue = checkIfWin.checkWin(userBet,rouletteRollResult);
             userCredits += userTempValue;
