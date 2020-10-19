@@ -13,7 +13,7 @@ public class RouletteBets extends Main {
     static boolean BetOn2nd = false;
     static boolean BetOn3rd = false;
 
-    public void setAllBetsToFalse() {
+    protected void setAllBetsToFalse() {
         BetOnGreen = false;
         BetOnBlack = false;
         BetOnRed = false;
@@ -27,7 +27,7 @@ public class RouletteBets extends Main {
         resetAllTextFields();
     }
 
-    public void resetAllTextFields(){
+    private void resetAllTextFields(){
         betOnRedText.setText("");
         betOnBlackText.setText("");
         betOnGreenText.setText("");

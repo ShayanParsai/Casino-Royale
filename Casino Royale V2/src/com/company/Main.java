@@ -2,17 +2,9 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
 
-    public ArrayList<String> DiceSixArrayList = new ArrayList<>();
-    public ArrayList<String> DiceTwelveArrayList = new ArrayList<>();
-    private JTextField diceSixResult;
-    private JTextField diceTwelveResult;
-    private JTextField savedDiceTextField6;
-    private JTextField savedDiceTextField12;
     private JTextField rouletteResultText;
     public static JTextField betOnRedText;
     public static JTextField betOnBlackText;
@@ -24,22 +16,17 @@ public class Main {
     public static JTextField betOn1stText;
     public static JTextField betOn2ndText;
     public static JTextField betOn3rdText;
-    public JTextField gameLogText;
-    public JTextField currentWagerText;
+    private JTextField rouletteGameLogText;
+    private JTextField rouletteCurrentWagerText;
+    private JTextField diceCurrentWagerText;
     private JPasswordField passwordTextField;
     private JLabel loginMessage;
     private JFrame loginFrame;
-    public static int userCredits = 500;
-    public static int userTempValue = 0;
-    public static int userBet = 0;
+    private JFrame choiceFrame;
+    private int userCredits = 500;
+    private int userBet = 0;
 
-    double D6() {
-        return (int)(Math.random()*((6))+ (double) 1);
-    }
-    double D12() {
-        return (int)(Math.random()*((12))+ (double) 1);
-    }
-    double roulette() {
+    private double roulette() {
         return (int)(Math.random()*((36)));
     }
 
@@ -48,7 +35,7 @@ public class Main {
         program.StartLoginFrame();
     }
 
-    public void StartLoginFrame() {
+    private void StartLoginFrame() {
         PanelsAndFrames getFrame = new PanelsAndFrames();
         JPanel loginPanel = new JPanel();
         loginFrame = new JFrame("Dice Generator Login");
@@ -94,117 +81,84 @@ public class Main {
         });
     }
 
-    public void StartLobby() {
-        PanelsAndFrames getFrame = new PanelsAndFrames();
+    private void StartLobby() {
+        PanelsAndFrames getFrames = new PanelsAndFrames();
         JPanel choicePanel = new JPanel();
-        JFrame choiceFrame = new JFrame("Casino Royale");
-        getFrame.getSmallPanelsAndFrames(choicePanel, choiceFrame);
+        choiceFrame = new JFrame("Lobby");
+        getFrames.getSmallPanelsAndFrames(choicePanel, choiceFrame);
         //=== Choice Frame+Panel^ ===//
 
         JButton rouletteButton = new JButton("Roulette");
         JButton diceButton = new JButton("Dice 6 & 12");
-        rouletteButton.setBounds(25,50,125,40);
-        diceButton.setBounds(175,50,125,40);
+        rouletteButton.setBounds(25,30,125,40);
+        diceButton.setBounds(175,30,125,40);
         choicePanel.add(rouletteButton);
         choicePanel.add(diceButton);
         //=== Roulette/Dice Buttons^ ===//
 
-        rouletteButton.addActionListener(e1 -> {
+        JButton logoutButton = new JButton("Logout");
+        getFrames.getLogOutButton(logoutButton,choicePanel);
+        logoutButton.addActionListener(e1 -> {
+
+            choiceFrame.setVisible(false);
+            loginFrame.setVisible(true);
+            loginMessage.setText("");
+            passwordTextField.setText("");
+        });
+        //=== Logout^ ===//
+
+        rouletteButton.addActionListener(e2 -> {
             choiceFrame.setVisible(false);
             StartRoulette();
         });
 
-        diceButton.addActionListener(e2 -> {
+        diceButton.addActionListener(e3 -> {
             choiceFrame.setVisible(false);
             startDice();
         });
     }
 
-    public void startDice() {
+    private void startDice() {
         PanelsAndFrames getFrames = new PanelsAndFrames();
         JPanel dicePanel = new JPanel();
         JFrame diceFrame = new JFrame("Dice");
         getFrames.getMediumPanelsAndFrames(dicePanel, diceFrame);
         //=== Dicer Frame+Panel^ ===//
 
-        JButton rollDiceSix = new JButton("Roll 1-6");
-        rollDiceSix.setBounds(15,30,100,40);
-        diceSixResult = new JTextField(20);
-        diceSixResult.setBounds(155,30,100,40);
-        dicePanel.add(diceSixResult);
-        dicePanel.add(rollDiceSix);
-        rollDiceSix.addActionListener(e1 -> {
+        JTextField diceGameLogText = new JTextField(50);
+        getFrames.getGameLogTextField(diceGameLogText,dicePanel,userCredits);
+        //=== Dice GameLog Text Field^ ===//
 
-            String x = Integer.toString((int) D6());
-            diceSixResult.setText(x);
-            DiceSixArrayList.add(x);
+        diceCurrentWagerText = new JTextField(20);
+        getFrames.getCurrentWagerTextField(diceCurrentWagerText,dicePanel);
+        //=== Dice CurrentWager TextField^ ===///
+
+        JButton diceReduceWageButton = new JButton("Reduce Wage by 10");
+        JButton diceRaiseWageButton = new JButton("Raise Wage by 10");
+        getFrames.getRaiseAndLowerWagerButtons(diceReduceWageButton, diceRaiseWageButton, dicePanel);
+        diceCurrentWagerText.setText(String.valueOf(userBet));
+        diceReduceWageButton.addActionListener(e13 -> {
+            if (userBet > 9) {
+                userBet -= 10;
+                diceCurrentWagerText.setText(String.valueOf(userBet));
+            }
         });
-        //=== Dice 1-6^ ===//
-
-        JButton rollDiceTwelve = new JButton("Roll 1-12");
-        rollDiceTwelve.setBounds(15,100,100,40);
-        diceTwelveResult = new JTextField(20);
-        diceTwelveResult.setBounds(155,100,100,40);
-        dicePanel.add(diceTwelveResult);
-        dicePanel.add(rollDiceTwelve);
-        rollDiceTwelve.addActionListener(e2 -> {
-
-            String x = Integer.toString((int) D12());
-            diceTwelveResult.setText(x);
-            DiceTwelveArrayList.add(x);
+        diceRaiseWageButton.addActionListener(e13 -> {
+            userBet += 10;
+            diceCurrentWagerText.setText(String.valueOf(userBet));
         });
-        //=== Dice 1-12^ ===//
+        //=== Dice Raise/LowerWager Button^ ===//
 
-        JButton printSavedButton = new JButton("Print saved rolls");
-        printSavedButton.setBounds(15,187,145,40);
-        savedDiceTextField6 = new JTextField(100);
-        savedDiceTextField6.setBounds(175,167,250,40);
-        dicePanel.add(savedDiceTextField6);
-        savedDiceTextField12 = new JTextField(100);
-        savedDiceTextField12.setBounds(175,204,250,40);
-        dicePanel.add(savedDiceTextField12);
-        dicePanel.add(printSavedButton);
-        savedDiceTextField6.setText("(D6) :");
-        savedDiceTextField12.setText("(D12):");
-        printSavedButton.addActionListener(e3 -> {
-
-            Collections.sort(DiceSixArrayList);
-            Collections.sort(DiceTwelveArrayList);
-            String x = DiceSixArrayList.toString();
-            String y = DiceTwelveArrayList.toString();
-            savedDiceTextField6.setText("(D6) :  " + x);
-            savedDiceTextField12.setText("(D12): " + y);
-        });
-        //=== Print Saved Rolls^ ===//
-
-        JButton deleteRollsButton = new JButton("Delete rolls");
-        deleteRollsButton.setBounds(15,285,100,35);
-        dicePanel.add(deleteRollsButton);
-        deleteRollsButton.addActionListener(e4 -> {
-
-            DiceSixArrayList.clear();
-            DiceTwelveArrayList.clear();
-            savedDiceTextField6.setText("(D6) :");
-            savedDiceTextField12.setText("(D12):");
-        });
-        //=== Delete rolls^ ===//
-
-        JButton diceLogoutButton = new JButton("Logout");
-        diceLogoutButton.setBounds(400,465,100,35);
-        dicePanel.add(diceLogoutButton);
-        diceLogoutButton.addActionListener(e5 -> {
-
-            DiceSixArrayList.clear();
-            DiceTwelveArrayList.clear();
+        JButton diceExitToLobbyButton = new JButton("Lobby");
+        getFrames.getExitToLobbyButton(diceExitToLobbyButton,dicePanel);
+        diceExitToLobbyButton.addActionListener(e14 -> {
             diceFrame.setVisible(false);
-            loginFrame.setVisible(true);
-            loginMessage.setText("");
-            passwordTextField.setText("");
+            choiceFrame.setVisible(true);
         });
-        //=== Logout^ ===//
+        //=== Exit to lobby^ ===//
     }
 
-    public void StartRoulette() {
+    private void StartRoulette() {
         RouletteBets allBets = new RouletteBets();
         PanelsAndFrames getFrames = new PanelsAndFrames();
         JPanel roulettePanel = new JPanel();
@@ -355,54 +309,40 @@ public class Main {
         rouletteResultText.setEditable(false);
         //=== Roulette Result Text Field^ ===//
 
-        gameLogText = new JTextField(50);
-        gameLogText.setBounds(15,380,400,50);
-        roulettePanel.add(gameLogText);
-        Font mediumThickFont = new Font("SansSerif", Font.BOLD, 18);
-        gameLogText.setFont(mediumThickFont);
-        gameLogText.setEditable(false);
-        gameLogText.setText("You have " + userCredits + " credits");
+        rouletteGameLogText = new JTextField(50);
+        getFrames.getGameLogTextField(rouletteGameLogText,roulettePanel,userCredits);
         //=== GameLog Text Field^ ===//
 
-        currentWagerText = new JTextField(20);
-        currentWagerText.setBounds(335,465,50,40);
-        roulettePanel.add(currentWagerText);
-        currentWagerText.setFont(mediumThickFont);
-        currentWagerText.setEditable(false);
+        rouletteCurrentWagerText = new JTextField(20);
+        getFrames.getCurrentWagerTextField(rouletteCurrentWagerText,roulettePanel);
         //=== CurrentWager TextField^ ===///
 
-        JButton reduceWageButton = new JButton("Reduce Wage by 10");
-        JButton raiseWageButton = new JButton("Raise Wage by 10");
-        reduceWageButton.setBounds(15,465,150,40);
-        raiseWageButton.setBounds(175,465,150,40);
-        roulettePanel.add(reduceWageButton);
-        roulettePanel.add(raiseWageButton);
-        currentWagerText.setText(String.valueOf(userBet));
-        reduceWageButton.addActionListener(e13 -> {
+        JButton rouletteReduceWageButton = new JButton("Reduce Wage by 10");
+        JButton rouletteRaiseWageButton = new JButton("Raise Wage by 10");
+        getFrames.getRaiseAndLowerWagerButtons(rouletteReduceWageButton, rouletteRaiseWageButton, roulettePanel);
+        rouletteCurrentWagerText.setText(String.valueOf(userBet));
+        rouletteReduceWageButton.addActionListener(e13 -> {
             if (userBet > 9) {
                 userBet -= 10;
-                currentWagerText.setText(String.valueOf(userBet));
+                rouletteCurrentWagerText.setText(String.valueOf(userBet));
             }
         });
-        raiseWageButton.addActionListener(e13 -> {
+        rouletteRaiseWageButton.addActionListener(e13 -> {
             userBet += 10;
-            currentWagerText.setText(String.valueOf(userBet));
+            rouletteCurrentWagerText.setText(String.valueOf(userBet));
         });
         //=== Raise/LowerWager Button^ ===//
 
-        JButton rouletteLogoutButton = new JButton("Logout");
-        rouletteLogoutButton.setBounds(400,465,100,35);
-        roulettePanel.add(rouletteLogoutButton);
-        rouletteLogoutButton.addActionListener(e14 -> {
+        JButton rouletteExitToLobbyButton = new JButton("Lobby");
+        getFrames.getExitToLobbyButton(rouletteExitToLobbyButton,roulettePanel);
+        rouletteExitToLobbyButton.addActionListener(e14 -> {
             rouletteFrame.setVisible(false);
-            loginFrame.setVisible(true);
-            loginMessage.setText("");
-            passwordTextField.setText("");
+            choiceFrame.setVisible(true);
         });
-        //=== Logout^ ===//
+        //=== Exit to lobby^ ===//
     }
 
-    public void calculateRouletteResults() {
+    private void calculateRouletteResults() {
         RouletteBets allBets = new RouletteBets();
         DidRouletteWin checkIfWin = new DidRouletteWin();
         if (userCredits >= userBet) {
@@ -417,18 +357,17 @@ public class Main {
                 rouletteResultText.setBackground(Color.red);
             }
             userCredits -= userBet;
-            userTempValue = checkIfWin.checkWin(userBet,rouletteRollResult);
+            int userTempValue = checkIfWin.checkWin(userBet,rouletteRollResult);
             userCredits += userTempValue;
             if (userTempValue > userBet) {
-                gameLogText.setText("You won " + userTempValue + " credits, your new total is: " + userCredits);
+                rouletteGameLogText.setText("You won " + userTempValue + " credits, your new total is: " + userCredits);
             } else {
-                gameLogText.setText("You lost " + userBet + " credits, your total is now : " + userCredits);
+                rouletteGameLogText.setText("You lost " + userBet + " credits, your total is now : " + userCredits);
             }
-            userTempValue = 0;
         } else if (userCredits > 0) {
-            gameLogText.setText("Insufficent funds, please lower wager");
+            rouletteGameLogText.setText("Insufficent funds, please lower wager");
         } else {
-            gameLogText.setText("Insufficent funds, please refill balance");
+            rouletteGameLogText.setText("Insufficent funds, please refill balance");
         }
         allBets.setAllBetsToFalse();
     }
