@@ -13,53 +13,53 @@ public class DidRouletteWin {
     public int checkWin(int userCredit, int rouletteRollResult) {
         int tempCredit = userCredit;
         int tempTotal = 0;
-        MyMultiplyer multiplyByTwoFunction = (a) -> a*2;
-        MyMultiplyer multiplyByThreeFunction = (a) -> a*3;
+        MyMultiplier multiplyByTwoFunction = (a) -> a*2;
+        MyMultiplier multiplyByThreeFunction = (a) -> a*3;
 
-        if (rouletteRollResult == (0) && RouletteBets.BetOnGreen) {
+        if (redNumbers.contains(rouletteRollResult) && RouletteBets.bets[0]) {
+            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
+            tempTotal += tempCredit; tempCredit = userCredit;
+        }
+        if (blackNumbers.contains(rouletteRollResult) && RouletteBets.bets[1]) {
+            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
+            tempTotal += tempCredit; tempCredit = userCredit;
+        }
+        if (rouletteRollResult == (0) && RouletteBets.bets[2]) {
             tempCredit *= 35; tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult <19 && RouletteBets.BetOnBottomHalf) {
+        if((rouletteRollResult%2)!=0 && RouletteBets.bets[3]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult >18 && RouletteBets.BetOnTopHalf) {
+        if ((rouletteRollResult%2)==0 && RouletteBets.bets[4]){
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult <13 && RouletteBets.BetOn1st) {
+        if (rouletteRollResult >18 && RouletteBets.bets[5]) {
+            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
+            tempTotal += tempCredit; tempCredit = userCredit;
+        }
+        if (rouletteRollResult <19 && RouletteBets.bets[6]) {
+            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
+            tempTotal += tempCredit; tempCredit = userCredit;
+        }
+        if (rouletteRollResult <13 && RouletteBets.bets[7]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult >12 && rouletteRollResult <25 && RouletteBets.BetOn2nd) {
+        if (rouletteRollResult >12 && rouletteRollResult <25 && RouletteBets.bets[8]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult > 24 && RouletteBets.BetOn3rd) {
+        if (rouletteRollResult > 24 && RouletteBets.bets[9]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
-        }
-        if (redNumbers.contains(rouletteRollResult) && RouletteBets.BetOnRed) {
-            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
-        }
-        if (blackNumbers.contains(rouletteRollResult) && RouletteBets.BetOnBlack) {
-            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
-        }
-        if((rouletteRollResult%2)==0 && RouletteBets.BetOnEvens) {
-            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
-        }
-        if ((rouletteRollResult%2)!=0 && RouletteBets.BetOnOdds){
-            tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit;
         }
         userCredit =+ tempTotal;
         return userCredit;
     }
 
-    private interface MyMultiplyer {
+    private interface MyMultiplier {
         int multiply(int a);
     }
 }

@@ -6,6 +6,7 @@ import java.awt.*;
 public class PanelsAndFrames {
 
     private final Font mediumThickFont = new Font("SansSerif", Font.BOLD, 17);
+    public final Font thickFont = new Font("SansSerif", Font.BOLD, 40);
 
     public void getMediumPanelsAndFrames(JPanel panel, JFrame frame) {
         frame.setVisible(true);

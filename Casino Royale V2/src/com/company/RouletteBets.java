@@ -1,42 +1,28 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class RouletteBets {
 
-    static boolean BetOnGreen = false;
-    static boolean BetOnBlack = false;
-    static boolean BetOnRed = false;
-    static boolean BetOnOdds = false;
-    static boolean BetOnEvens = false;
-    static boolean BetOnTopHalf = false;
-    static boolean BetOnBottomHalf = false;
-    static boolean BetOn1st = false;
-    static boolean BetOn2nd = false;
-    static boolean BetOn3rd = false;
+    public static final Boolean[] bets = {false,false,false,false,false,false,false,false,false,false};
+    // Red = 0 | Black = 1 | Green = 2 | Odds = 3 | Evens = 4
+    // TopHalf = 5 | BotHalf = 6 | 1st = 7 | 2st = 8 | 3st = 9
 
-    protected void setAllBetsToFalse() {
-        BetOnGreen = false;
-        BetOnBlack = false;
-        BetOnRed = false;
-        BetOnOdds = false;
-        BetOnEvens = false;
-        BetOnTopHalf = false;
-        BetOnBottomHalf = false;
-        BetOn1st = false;
-        BetOn2nd = false;
-        BetOn3rd = false;
-        resetAllTextFields();
+    protected void setAllBetsToFalse(Main main) {
+        Arrays.fill(bets, false);
+        resetAllTextFields(main);
     }
 
-    private void resetAllTextFields(){
-        Main.betOnRedText.setText("");
-        Main.betOnBlackText.setText("");
-        Main.betOnGreenText.setText("");
-        Main.betOnOddsText.setText("");
-        Main.betOnEvensText.setText("");
-        Main.betOnTopHalfText.setText("");
-        Main.betOnBottomHalfText.setText("");
-        Main.betOn1stText.setText("");
-        Main.betOn2ndText.setText("");
-        Main.betOn3rdText.setText("");
+    private void resetAllTextFields(Main main){
+        main.betOnRedText.setText("");
+        main.betOnBlackText.setText("");
+        main.betOnGreenText.setText("");
+        main.betOnOddsText.setText("");
+        main.betOnEvensText.setText("");
+        main.betOnTopHalfText.setText("");
+        main.betOnBottomHalfText.setText("");
+        main.betOn1stText.setText("");
+        main.betOn2ndText.setText("");
+        main.betOn3rdText.setText("");
     }
 }
