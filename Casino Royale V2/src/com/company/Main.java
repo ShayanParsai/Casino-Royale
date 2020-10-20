@@ -7,16 +7,16 @@ import java.util.Arrays;
 public class Main {
 
     private JTextField rouletteResultText;
-    public JTextField betOnRedText;
-    public JTextField betOnBlackText;
-    public JTextField betOnGreenText;
-    public JTextField betOnOddsText;
-    public JTextField betOnEvensText;
-    public JTextField betOnTopHalfText;
-    public JTextField betOnBottomHalfText;
-    public JTextField betOn1stText;
-    public JTextField betOn2ndText;
-    public JTextField betOn3rdText;
+    private JTextField betOnRedText;
+    private JTextField betOnBlackText;
+    private JTextField betOnGreenText;
+    private JTextField betOnOddsText;
+    private JTextField betOnEvensText;
+    private JTextField betOnTopHalfText;
+    private JTextField betOnBottomHalfText;
+    private JTextField betOn1stText;
+    private JTextField betOn2ndText;
+    private JTextField betOn3rdText;
     private JTextField rouletteGameLogText;
     private JTextField rouletteCurrentWagerText;
     private JTextField diceCurrentWagerText;
@@ -174,7 +174,10 @@ public class Main {
         JButton resetAllBetsButton = new JButton("Reset all bets");
         resetAllBetsButton.setBounds(190,0,125,25);
         roulettePanel.add(resetAllBetsButton);
-        resetAllBetsButton.addActionListener(e0 -> allBets.setAllBetsToFalse(this));
+        resetAllBetsButton.addActionListener(e0 -> {
+                allBets.setAllBetsToFalse();
+                resetAllTextFields();
+        });
         //=== Reset All Bets Button^ ===//
 
         JButton betOnRedButton = new JButton("Red");
@@ -306,7 +309,8 @@ public class Main {
         rouletteResultText = new JTextField(20);
         rouletteResultText.setBounds(425,380,50,50);
         roulettePanel.add(rouletteResultText);
-        rouletteResultText.setFont(getFrames.thickFont);
+        Font thickFont = new Font("SansSerif", Font.BOLD, 40);
+        rouletteResultText.setFont(thickFont);
         rouletteResultText.setEditable(false);
         //=== Roulette Result Text Field^ ===//
 
@@ -382,14 +386,14 @@ public class Main {
         } else {
             rouletteGameLogText.setText("Insufficient funds, please refill balance");
         }
-        allBets.setAllBetsToFalse(this);
+        allBets.setAllBetsToFalse();
+        resetAllTextFields();
     }
 
     private void setResultColour(int roll) {
-        DidRouletteWin checkIfWin = new DidRouletteWin();
         if (roll == 0) {
             rouletteResultText.setBackground(Color.green);
-        } else if (checkIfWin.blackNumbers.contains(roll)) {
+        } else if (Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35).contains(roll)) {
             rouletteResultText.setBackground(Color.gray);
         } else {
             rouletteResultText.setBackground(Color.red);
@@ -404,5 +408,18 @@ public class Main {
         } else {
             rouletteGameLogText.setText("You lost " + userBet + " credits, your total is now : " + userCredits);
         }
+    }
+
+    private void resetAllTextFields(){
+        betOnRedText.setText("");
+        betOnBlackText.setText("");
+        betOnGreenText.setText("");
+        betOnOddsText.setText("");
+        betOnEvensText.setText("");
+        betOnTopHalfText.setText("");
+        betOnBottomHalfText.setText("");
+        betOn1stText.setText("");
+        betOn2ndText.setText("");
+        betOn3rdText.setText("");
     }
 }

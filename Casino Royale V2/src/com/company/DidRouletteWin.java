@@ -8,8 +8,16 @@ public class DidRouletteWin {
     private final Integer[] red = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36};
     private final List<Integer> redNumbers = Arrays.asList(red);
     private final Integer[] black = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
-    public final List<Integer> blackNumbers = Arrays.asList(black);
-
+    private final List<Integer> blackNumbers = Arrays.asList(black);
+    /**
+     * This method takes in the value of the users bet or bets, and also the result of the roulette spin,
+     * it compares the result of the spin with all the possible win conditions, than it checks if the user
+     * has bet on that winning condition, if the winning condition is true, and the user has placed a bet, it starts
+     * the calculations to multiply the amount bet, with the amount inside the winning condition
+     * @param userCredit Takes in the amount that the user bets/sends in
+     * @param rouletteRollResult Takes in the result of the RNG number generated in main
+     * @return Returns the result of how much we won, IF we won
+     */
     public int checkWin(int userCredit, int rouletteRollResult) {
         int tempCredit = userCredit;
         int tempTotal = 0;
