@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.util.Arrays;
 
 public class RouletteBets {
@@ -14,7 +15,14 @@ public class RouletteBets {
     /**
      * Called from main, resets all the "Boolean[] bets" to false
      */
-    public void setAllBetsToFalse() {
+    public void setAllBetsToFalse(JTextField[] betOnArray) {
         Arrays.fill(bets, false);
+        resetAllTextFields(betOnArray);
+    }
+
+    private void resetAllTextFields(JTextField[] betOnArray){
+        for (JTextField textField : betOnArray) {
+            textField.setText("");
+        }
     }
 }
