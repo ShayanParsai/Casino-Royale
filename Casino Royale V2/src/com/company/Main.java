@@ -12,13 +12,8 @@ public class Main {
     private int userCredits = 500;
     private int userBet = 0;
 
-    private double throwDice() {
-        return (int)(Math.random()*((7-1))+ (double) 1);
-    }
-
-    private double spinRoulette() {
-        return (int)(Math.random()*((36)));
-    }
+    private double throwDice() { return (int)(Math.random()*((7-1))+ (double) 1); }
+    private double spinRoulette() { return (int)(Math.random()*((36))); }
 
     public static void main(String[] args) {
         Main program = new Main();
