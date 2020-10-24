@@ -10,7 +10,7 @@ public class CasinoTest {
     @Test
     @DisplayName("Testing if checkWin returns correct 2x Multiplier")
     void checkWin1() {
-        DidRouletteWin checkIfWin = new DidRouletteWin();
+        RouletteMath checkIfWin = new RouletteMath();
         RouletteBets.bets[0] = true;
         int expectedReturn = 20;
 
@@ -20,7 +20,8 @@ public class CasinoTest {
     @Test
     @DisplayName("Testing if checkWin returns correct 3x Multiplier")
     void checkWin2() {
-        DidRouletteWin checkIfWin = new DidRouletteWin();
+        RouletteMath checkIfWin = new RouletteMath();
+        RouletteBets.bets[0] = false;
         RouletteBets.bets[7] = true;
         int expectedReturn = 30;
 
@@ -30,8 +31,7 @@ public class CasinoTest {
     @Test
     @DisplayName("Testing if checkWin returns correct 35x Multiplier")
     void checkWin3() {
-        DidRouletteWin checkIfWin = new DidRouletteWin();
-        RouletteBets.bets[0] = false;
+        RouletteMath checkIfWin = new RouletteMath();
         RouletteBets.bets[7] = false;
         RouletteBets.bets[2] = true;
         int expectedReturn = 350;
