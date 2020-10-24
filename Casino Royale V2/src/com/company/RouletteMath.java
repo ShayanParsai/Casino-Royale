@@ -18,48 +18,48 @@ public class RouletteMath {
      * @param rouletteRollResult Takes in the result of the RNG number generated in main
      * @return Returns the result of how much we won, IF we won
      */
-    public int checkWin(int userCredit, int rouletteRollResult) {
+    public int checkWin(int userCredit, int rouletteRollResult,Boolean[] bets) {
         int tempCredit = userCredit;
         int tempTotal = 0;
         MyMultiplier multiplyByTwoFunction = (a) -> a*2;
         MyMultiplier multiplyByThreeFunction = (a) -> a*3;
 
-        if (redNumbers.contains(rouletteRollResult) && RouletteBets.bets[0]) {
+        if (redNumbers.contains(rouletteRollResult) && bets[0]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (blackNumbers.contains(rouletteRollResult) && RouletteBets.bets[1]) {
+        if (blackNumbers.contains(rouletteRollResult) && bets[1]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult == (0) && RouletteBets.bets[2]) {
+        if (rouletteRollResult == (0) && bets[2]) {
             tempCredit *= 35; tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if((rouletteRollResult%2)!=0 && RouletteBets.bets[3]) {
+        if((rouletteRollResult%2)!=0 && bets[3]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if ((rouletteRollResult%2)==0 && RouletteBets.bets[4]){
+        if ((rouletteRollResult%2)==0 && bets[4]){
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult >18 && RouletteBets.bets[5]) {
+        if (rouletteRollResult >18 && bets[5]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult <19 && RouletteBets.bets[6]) {
+        if (rouletteRollResult <19 && bets[6]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult <13 && RouletteBets.bets[7]) {
+        if (rouletteRollResult <13 && bets[7]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult >12 && rouletteRollResult <25 && RouletteBets.bets[8]) {
+        if (rouletteRollResult >12 && rouletteRollResult <25 && bets[8]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
             tempTotal += tempCredit; tempCredit = userCredit;
         }
-        if (rouletteRollResult > 24 && RouletteBets.bets[9]) {
+        if (rouletteRollResult > 24 && bets[9]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
             tempTotal += tempCredit;
         }
