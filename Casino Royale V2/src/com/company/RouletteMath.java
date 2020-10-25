@@ -16,6 +16,7 @@ public class RouletteMath {
      * the calculations to multiply the amount bet, with the amount inside the winning condition
      * @param userCredit Takes in the amount that the user bets/sends in
      * @param rouletteRollResult Takes in the result of the RNG number generated in main
+     * @param bets Takes in the Array of bets, to compare them in the if statements
      * @return Returns the result of how much we won, IF we won
      */
     public int checkWin(int userCredit, int rouletteRollResult,Boolean[] bets) {

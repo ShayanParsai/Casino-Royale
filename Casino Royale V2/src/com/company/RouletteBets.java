@@ -5,8 +5,9 @@ import java.util.Arrays;
 
 public class RouletteBets {
     /**
-     * Called from main, resets all the "Boolean[] bets" to false
-     * And than it calls for resetAllTextFields() to reset the JTextFields in Main
+     * This method is called in main to set betting booleans and textfields to reset them
+     * @param betOnArray Takes in TextFields, to reset them in resetAllTextFields()
+     * @param bets Takes in Booleans to set them to false
      */
     public void setAllBetsToFalse(JTextField[] betOnArray,Boolean[] bets ) {
         Arrays.fill(bets, false);

@@ -414,8 +414,8 @@ public class Main {
             userCredits += userBet;
             diceGameLogText.setText("You won " +userBet+ " your total is now: " +userCredits);
         } else if (userRoll == houseRoll) {
-            userCredits -= userBet/10;
-            diceGameLogText.setText("You lost 10% of the wage, your total is now: " + userCredits);
+            userCredits -= userBet*0.75;
+            diceGameLogText.setText("You lost 25% of the wage, your total is now: " + userCredits);
         } else {
             userCredits -= userBet;
             diceGameLogText.setText("You lost " +userBet+ " your total is now: " +userCredits);
