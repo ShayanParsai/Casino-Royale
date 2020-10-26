@@ -410,9 +410,7 @@ public class Main {
     }
 
     private void calculateDiceWinOrLoss(int userRoll, int houseRoll,JTextField diceGameLogText) {
-        if (!Arrays.asList(bets).contains(true)) {
-            diceGameLogText.setText("No bets found, your total is still : " + userCredits);
-        } else if (userRoll > houseRoll) {
+        if (userRoll > houseRoll) {
             userCredits += userBet;
             diceGameLogText.setText("You won " +userBet+ " your total is now: " +userCredits);
         } else if (userRoll == houseRoll) {
