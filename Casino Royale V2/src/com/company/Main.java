@@ -169,7 +169,7 @@ public class Main {
     }
 
     private void StartRoulette(JFrame choiceFrame) {
-        RouletteBets allBets = new RouletteBets();
+        RouletteBetsReset allBets = new RouletteBetsReset();
         PanelsAndFrames getFrames = new PanelsAndFrames();
 
         JPanel roulettePanel = new JPanel();
@@ -334,7 +334,7 @@ public class Main {
     }
 
     private void calculateRouletteResults(JTextField[] betOnArray, JTextField rouletteGameLogText) {
-        RouletteBets allBets = new RouletteBets();
+        RouletteBetsReset allBets = new RouletteBetsReset();
         RouletteMath checkIfWin = new RouletteMath();
 
         // Makes sure the user has enough credits for multiple bets
@@ -410,7 +410,9 @@ public class Main {
     }
 
     private void calculateDiceWinOrLoss(int userRoll, int houseRoll,JTextField diceGameLogText) {
-        if (userRoll > houseRoll) {
+        if (!Arrays.asList(bets).contains(true)) {
+            diceGameLogText.setText("No bets found, your total is still : " + userCredits);
+        } else if (userRoll > houseRoll) {
             userCredits += userBet;
             diceGameLogText.setText("You won " +userBet+ " your total is now: " +userCredits);
         } else if (userRoll == houseRoll) {
