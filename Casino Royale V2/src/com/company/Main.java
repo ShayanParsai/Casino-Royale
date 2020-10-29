@@ -12,8 +12,8 @@ public class Main {
     private int userCredits = 500;
     private int userBet = 0;
 
-    private double throwDice() { return (int)(Math.random()*((7-1))+ (double) 1); }
-    private double spinRoulette() { return (int)(Math.random()*((36))); }
+    private double rngDice() { return (int)(Math.random()*((7-1))+ (double) 1); }
+    private double rngRoulette() { return (int)(Math.random()*((36))); }
 
     public static void main(String[] args) {
         Main program = new Main();
@@ -138,7 +138,7 @@ public class Main {
 
         JButton throwDiceButton = new JButton("Throw Dice");
         getFrames.getButton(throwDiceButton,dicePanel,50,130,400,40);
-        throwDiceButton.addActionListener(e11 -> throwDice
+        throwDiceButton.addActionListener(e11 -> throwTheDice
                 (userRollTextField,houseRollTextField,diceGameLogText));
         //=== Throw Dice Button^ ===//
 
@@ -347,8 +347,8 @@ public class Main {
         // Goes on if the user affords the bet or bets
         if (userCredits >= tempUserBet) {
 
-            // Spins the spinRoulette and String/Int the result, sets the colour of the result
-            int rouletteRollResult = (int) spinRoulette();
+            // Spins the rngRoulette and String/Int the result, sets the colour of the result
+            int rouletteRollResult = (int) rngRoulette();
             String x = Integer.toString(rouletteRollResult);
             rouletteResultText.setText(x);
             setResultColour(rouletteRollResult);
@@ -359,7 +359,7 @@ public class Main {
                     userCredits -= userBet;
             }
 
-            // Sends the result of spinRoulette and bet to calculate win/loss
+            // Sends the result of rngRoulette and bet to calculate win/loss
             int userTempValue = checkIfWin.checkWin(userBet,rouletteRollResult,bets);
             userCredits += userTempValue;
 
@@ -395,10 +395,10 @@ public class Main {
         }
     }
 
-    private void throwDice(JTextField user, JTextField house, JTextField diceGameLogText) {
+    private void throwTheDice(JTextField user, JTextField house, JTextField diceGameLogText) {
         if (userCredits >= userBet){
-            int userRoll = (int) throwDice();
-            int houseRoll = (int) throwDice();
+            int userRoll = (int) rngDice();
+            int houseRoll = (int) rngDice();
             user.setText(String.valueOf(userRoll));
             house.setText(String.valueOf(houseRoll));
             calculateDiceWinOrLoss(userRoll,houseRoll,diceGameLogText);

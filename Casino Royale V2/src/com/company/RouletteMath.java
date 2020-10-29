@@ -27,38 +27,46 @@ public class RouletteMath {
 
         if (redNumbers.contains(rouletteRollResult) && bets[0]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (blackNumbers.contains(rouletteRollResult) && bets[1]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult == (0) && bets[2]) {
             tempCredit *= 35; tempTotal += tempCredit; tempCredit = userCredit;
         }
         if((rouletteRollResult%2)!=0 && bets[3]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if ((rouletteRollResult%2)==0 && bets[4]){
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult >18 && bets[5]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult <19 && bets[6]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult <13 && bets[7]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult >12 && rouletteRollResult <25 && bets[8]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);
-            tempTotal += tempCredit; tempCredit = userCredit;
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if (rouletteRollResult > 24 && bets[9]) {
             tempCredit = multiplyByThreeFunction.multiply(tempCredit);

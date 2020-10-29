@@ -39,7 +39,7 @@ public class CasinoTest {
     }
 
     @Test
-    @DisplayName("Testing if roulette correctly returns zero on all possible outcomes")
+    @DisplayName("Testing if roulette correctly returns no win Miltiplier on all outcomes")
     void checkWin4() {
         RouletteMath checkIfWin = new RouletteMath();
         Boolean[] bets = {false,false,false,false,false,false,false,false,false,false};
@@ -49,7 +49,7 @@ public class CasinoTest {
     }
 
     @Test
-    @DisplayName("Testing if setAllBetsToFalse() Correctly sets the bets to false")
+    @DisplayName("Testing if setAllBetsToFalse() Correctly sets the booleans to false")
     void setAllBetsToFalse() {
         RouletteBetsReset checkIfWin = new RouletteBetsReset();
         JTextField[] betOnArray = {};
