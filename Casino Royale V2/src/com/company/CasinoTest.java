@@ -39,7 +39,7 @@ public class CasinoTest {
     }
 
     @Test
-    @DisplayName("Testing if roulette correctly returns no win on all possible outcomes")
+    @DisplayName("Testing if roulette correctly returns zero on all possible outcomes")
     void checkWin4() {
         RouletteMath checkIfWin = new RouletteMath();
         Boolean[] bets = {false,false,false,false,false,false,false,false,false,false};
