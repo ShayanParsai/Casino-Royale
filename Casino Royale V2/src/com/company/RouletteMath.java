@@ -36,7 +36,9 @@ public class RouletteMath {
             tempCredit = userCredit;
         }
         if (rouletteRollResult == (0) && bets[2]) {
-            tempCredit *= 35; tempTotal += tempCredit; tempCredit = userCredit;
+            tempCredit *= 35; 
+            tempTotal += tempCredit;
+            tempCredit = userCredit;
         }
         if((rouletteRollResult%2)!=0 && bets[3]) {
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
