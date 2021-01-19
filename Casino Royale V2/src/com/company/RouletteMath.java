@@ -45,7 +45,7 @@ public class RouletteMath {
             tempTotal += tempCredit;
             tempCredit = userCredit;
         }
-        if ((rouletteRollResult%2)==0 && bets[4]){
+        if ((rouletteRollResult%2)==0 && bets[4] && (rouletteRollResult != 0)){
             tempCredit = multiplyByTwoFunction.multiply(tempCredit);
             tempTotal += tempCredit;
             tempCredit = userCredit;
